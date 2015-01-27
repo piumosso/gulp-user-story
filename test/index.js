@@ -20,6 +20,12 @@ SCRIPT_USERSTORIFIED_CONTENT = 'function test(x) {\n' +
 '}\n\n' +
 'UserStory.log(["Run test"], ["example"]);\n' +
 'test(5);';
+SCRIPT_USERSTORIFIED_CONTENT_CUSTOM = 'function test(x) {\n' +
+'  console.lol(["Test call with [x=", x, "]"], ["example.test"]);\n' +
+'  return x * 5;\n' +
+'}\n\n' +
+'console.lol(["Run test"], ["example"]);\n' +
+'test(5);';
 
 
 describe('gulp-user-story', function() {
@@ -57,6 +63,21 @@ describe('gulp-user-story', function() {
     stream.once('end', function () {
       fileCount.should.equal(1);
       done();
+    });
+
+    stream.write(fakeFile);
+    stream.end();
+  });
+
+  it('should userstorify the file content with specific logger name', function() {
+    var fileCount = 0;
+    var stream = userStory({
+      loggerName: 'console.lol'
+    });
+
+    stream.on('data', function(newFile){
+      newFile.contents.toString('utf8').should.equal(SCRIPT_USERSTORIFIED_CONTENT_CUSTOM);
+      ++fileCount;
     });
 
     stream.write(fakeFile);
