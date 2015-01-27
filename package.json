@@ -1,0 +1,47 @@
+{
+  "name": "gulp-user-story",
+  "description": "Gulp plugin for UserStory.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/piumosso/gulp-user-story",
+  "author": {
+    "name": "piumosso",
+    "email": "golikoffartem@gmail.com",
+    "url": "http://piumosso.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/piumosso/gulp-user-story.git"
+  },
+  "bugs": {
+    "url": "https://github.com/piumosso/gulp-user-story/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/piumosso/gulp-user-story/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "user-story": "0.0.8",
+    "gulp-util": "3.0.*",
+    "through2": "0.6.*"
+  },
+  "devDependencies": {
+    "event-stream": "3.1.x",
+    "mocha": "2.1.*",
+    "should": "4.6.*",
+    "vinyl": "0.4.*"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "keywords": [
+    "gulpplugin",
+    "user-story",
+    "UserStory",
+    "piumosso"
+  ]
+}
