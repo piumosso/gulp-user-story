@@ -1,6 +1,5 @@
 var userStory = require('../');
 var should = require('should');
-var gutil = require('gulp-util');
 var fs = require('fs');
 var path = require('path');
 var es = require('event-stream');
@@ -40,11 +39,17 @@ describe('gulp-user-story', function() {
     });
   }
 
+  function getFakeFileReadStream(){
+    return new File({
+      contents: es.readArray([SCRIPT_CONTENT])
+    });
+  }
+
   beforeEach(function(){
     fakeFile = getFakeFile(SCRIPT_CONTENT);
   });
 
-  it('should userstorify the file content', function(done) {
+  it('should userstorify the buffer-file content', function(done) {
     var fileCount = 0;
     var stream = userStory();
 
@@ -69,7 +74,7 @@ describe('gulp-user-story', function() {
     stream.end();
   });
 
-  it('should userstorify the file content with specific logger name', function() {
+  it('should userstorify the buffer-file content with specific logger name', function() {
     var fileCount = 0;
     var stream = userStory({
       loggerName: 'console.lol'
@@ -82,5 +87,20 @@ describe('gulp-user-story', function() {
 
     stream.write(fakeFile);
     stream.end();
+  });
+
+  it('should userstorify the stream-file content', function(done) {
+    var myHeader = userStory({});
+
+    myHeader.write(getFakeFileReadStream());
+
+    myHeader.once('data', function(file) {
+      should(file.isStream()).ok;
+      file.contents.pipe(es.wait(function(err, data) {
+        data.toString('utf8').should.equal(SCRIPT_USERSTORIFIED_CONTENT);
+        done();
+      }));
+    });
+
   });
 });

@@ -1,7 +1,7 @@
 {
   "name": "gulp-user-story",
   "description": "Gulp plugin for UserStory.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/piumosso/gulp-user-story",
   "author": {
     "name": "piumosso",
@@ -25,12 +25,11 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "user-story": "0.0.8",
-    "gulp-util": "3.0.*",
-    "through2": "0.6.*"
+    "user-story": "0.0.9",
+    "through2": "0.6.*",
+    "event-stream": "3.1.*"
   },
   "devDependencies": {
-    "event-stream": "3.1.x",
     "mocha": "2.1.*",
     "should": "4.6.*",
     "vinyl": "0.4.*"
