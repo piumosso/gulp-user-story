@@ -1,7 +1,7 @@
 {
   "name": "gulp-user-story",
   "description": "Gulp plugin for UserStory.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/piumosso/gulp-user-story",
   "author": {
     "name": "piumosso",
